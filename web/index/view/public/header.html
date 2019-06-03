@@ -1,0 +1,29 @@
+
+<div class="nav-1">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <!--导航按钮-->
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <!--导航logo图片-->
+            <a class="navbar-brand" href="{:url('index/index/index')}"><img style="width: 170px" src="__ImagePath__{$config.logo_url}"></a>
+        </div>
+        <!--导航菜单-->
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav" id="nav2">
+                <li><a href="{:url('index/index/index')}" {if condition="$now_controller eq 'Index'"}style="color:#68a500"{/if}>公司首页</a></li>
+                <li><a href="{:url('index/produce/index')}" {if condition="$now_controller eq 'Produce'"}style="color:#68a500"{/if}>产品案例</a></li>
+                <li><a href="{:url('index/service/index')}" {if condition="$now_controller eq 'Service'"}style="color:#68a500"{/if}>业务咨询</a></li>
+                <li><a href="{:url('index/about/index')}" {if condition="$now_controller eq 'About'"}style="color:#68a500"{/if}>关于我们</a></li>
+                <li><a href="{:url('index/cases/index')}" {if condition="$now_controller eq 'Cases'"}style="color:#68a500"{/if}>新闻中心</a></li>
+                <li><a href="{:url('index/contact/index')}" {if condition="$now_controller eq 'Contact'"}style="color:#68a500"{/if}>联系我们</a></li>
+            </ul>
+            <div class="dih"><p><i></i>热线电话：{$config.hot_tel}</p></div>
+        </div>
+    </nav>
+
+</div>

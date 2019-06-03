@@ -1,0 +1,148 @@
+
+
+<div class="footer">
+    <div class="footer-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 footer-2">
+                    <h2>在线留言</h2>
+                    <p class="p1"><span></span></p>
+                    <form>
+                    <div>
+                        <div class="footer-left">
+                            <input type="text" placeholder="姓名" name="name"><br>
+                            <input type="text" placeholder="电话" name="phone"><br>
+                            <input type="text" placeholder="邮箱" name="email">
+                        </div>
+                        <div class="footer-right">
+
+                            <textarea type="text" placeholder="留言" id="message"></textarea>
+                        
+                        </div>
+                        <div style="clear: both"></div>
+                        <input type="reset" style="display: none">
+                    </form>
+                    </div>
+                    <p class="footer-p1" >提交</p>
+                    <div class="footer-p2">
+                        <span>友情链接</span>
+                        {volist name="link" id="list" length='4'}
+                            <span onclick="window.open('{$list.linkurl}');">{$list.name}</span>
+                        {/volist}
+                    
+                    </div>
+                </div>
+
+
+                <div class="col-xs-12 col-sm-12 col-md-3 footer-2">
+                    <h2>关注我们</h2>
+                    <p class="p1"><span></span></p>
+                    <div class="footer-top">
+                        <div class="footer-left1">
+                            <img src="__ImagePath__{$config.sub_url}">
+                            <p>官方订阅号</p>
+                        </div>
+                        <div class="footer-left2" >
+                            <img src="__ImagePath__{$config.qr_url}">
+                            <p>手机云网站</p>
+                        </div>
+                        <p style="clear: both"></p>
+
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 footer-2 footer-3">
+
+                    <h2>联系我们</h2>
+                    <p class="p1"><span></span></p>
+                    <p>{$config.address}</p>
+                    <p>邮箱：{$config.email}</p>
+                    <p>电话:13816881494</p>
+                    <p>邮编:223003</p>
+
+                </div>
+
+
+
+            </div>
+            <div class="row">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer-end">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <span>{$config.power}</span>
+            <span>{$config.case_info}</span>
+            <!-- <span>粤CP备160059756</span> -->
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3">
+            <i class="i1"></i><span>{$config.case_info}</span>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3">
+            <span>关于我们 /  收藏我们 / 联系我们</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+<script>
+
+    $(function(){
+        $(".footer-p1").click(function(){
+
+            var name = $("input[name='name']").val();          
+            var phone = $("input[name='phone']").val();
+            var email = $("input[name='email']").val();
+            var message=$("#message").val();
+
+            if(name == ''){
+              alert("姓名不能为空");
+              return false;
+            }
+            if(phone == ''){
+              alert("电话不能为空");
+              return false;
+            }
+            var phonecode=new RegExp(/^\d{11}$/);
+            if (!phone.match(phonecode)) {
+              alert("提示：请输入正确的电话号!");
+              return false;                
+            }
+            if(email == ''){
+              alert("邮箱不能为空");
+              return false;
+            } 
+            if(email.length > 0 && !email.match(/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/)){
+             alert("邮箱格式不对");
+             return false;
+            }
+
+            $.ajax({
+                url : "{:url('index/index/message')}",
+                type : "post",
+                dataType : "json",
+                data : {'name':name,'phone':phone,'email':email,'message':message},
+
+                success : function(mes){
+
+                      if(mes.success == 1){
+                        alert(mes.msg);
+                        $("input[type=reset]").trigger("click");  //清空表单数据
+                      }else{
+                        alert(mes.msg);
+                      }
+                }
+            });
+
+        });
+
+})
+</script>
