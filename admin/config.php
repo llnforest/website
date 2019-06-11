@@ -138,6 +138,7 @@ return [
 
     // 视图输出字符串内容替换
     'view_replace_str'       => [
+        '__AppName__' => '后台管理系统',
         '__PublicAdmin__'   =>'/static/admin',
         '__PublicDefault__' =>'/static/default',
         '__ImagePath__' =>'http://img.website.com',

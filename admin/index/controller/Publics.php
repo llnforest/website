@@ -26,34 +26,23 @@ class Publics extends Controller
     /**
      * 登入
      */
-    public function login()
-    {
-
-        if ($this->request->isAjax()) {
-
-            $post = $this->request->post();
-            $data = [
-                 'name'      => $post['name'],
-                 'password'  => md5($post['password']),
-            ];
-            $list =  Db::name('tp_admin')->where($data)->find();
-            if($list){
-                if($list['status'] != 1) return $this->error('账户暂时不能使用');
-                Auth::login($list);
+    //登录
+    public function login(){
+        if($this->request->isGet()){
+            return view('publics/login');
+        }else{
+            $userInfo = AdminModel::where(['name'=>$this->post['name'],'password'=>md5($this->post['password']),'status'=>1])->find();
+            if(!empty($userInfo)){
+                Auth::login($userInfo);
                 //手动加入日志
                 $auth = new Auth();
-                $auth->createLog("管理员{$list['nick_name']}登录后台",'后台登录');
-                AdminModel::where(['id'=>$list['id']])->update(['last_login_ip'=>$this->request->ip(),'last_login_time'=>date("Y-m-d H:i:s",time())]);
-                return $this->success('正在登陆...','index/index'); 
-
+                $auth->createLog("管理员{$userInfo['nick_name']}登录后台",'后台登录');
+                AdminModel::where(['id'=>$userInfo['id']])->update(['last_login_ip'=>$this->request->ip(),'last_login_time'=>date("Y-m-d H:i:s",time())]);
+                return ['code' => 0];
             }else{
-                return $this->error('账户或密码错误');
+                return ['code' => 1];
             }
-          
         }
-
-
-        return $this->fetch();
     }
     /**
      * 退出视图

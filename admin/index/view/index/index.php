@@ -19,8 +19,8 @@
         <div class="container-fluid" >
 
             <a href="{:url('index/index')}" class="brand">
-                <img src="__PublicAdmin__/images/logo2.png" alt="恒通信息科技" style="height:25px">
-                <span style="font-weight:700;font-size: 18px">恒通信息</span>
+                <img src="__PublicAdmin__/images/logo2.png" alt="__AppName__" style="height:25px">
+                <span style="font-weight:700;font-size: 18px">__AppName__</span>
             </a>
             <div class="pull-left nav_shortcuts" >
             </div>
@@ -91,7 +91,7 @@
         </div>
         <!--底部版权-->
         <div class="page-power" id="power">
-            Copyright  2017-2018 安徽恒通科技 All rights reserved
+            Copyright  2017-2018 __AppName__ All rights reserved
         </div>
     </div>
 </div>
