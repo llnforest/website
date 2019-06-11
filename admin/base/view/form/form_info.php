@@ -16,15 +16,15 @@
                 </td>
             </tr>
             <tr>
-                <th>SEO描述</th>
-                <td class="layui-form">
-                    <input class="form-control text" type="text" name="seo_des" value="{$info.seo_des??''}" placeholder="SEO描述">
-                </td>
-            </tr>
-            <tr>
                 <th>SEO关键字</th>
                 <td class="layui-form">
                     <input class="form-control text" type="text" name="seo_key" value="{$info.seo_key??''}" placeholder="SEO关键字">
+                </td>
+            </tr>
+            <tr>
+                <th>SEO描述</th>
+                <td class="layui-form">
+                    <textarea class="form-control text" type="text" name="seo_des" placeholder="SEO描述">{$info.seo_des??''}</textarea>
                 </td>
             </tr>
             <tr>
